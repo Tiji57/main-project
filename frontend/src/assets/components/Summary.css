@@ -1,0 +1,150 @@
+/* General Container Styles */
+.incomes-expenses-container {
+    font-family: Arial, sans-serif;
+    padding: 20px;
+    max-width: 1200px;
+    margin: 0 auto;
+  }
+  
+  .incomes-expenses-header {
+    text-align: center;
+    margin-bottom: 30px;
+  }
+  
+  h1 {
+    font-size: 2.5em;
+    color: #2d2d2d;
+  }
+  
+  .school-details {
+    text-align: center;
+    margin-bottom: 20px;
+    font-size: 1.2em;
+    color: #333;
+  }
+  
+  /* Select Month Dropdown */
+  label {
+    font-size: 1.2em;
+    color: #333;
+  }
+  
+  select {
+    padding: 10px;
+    font-size: 1.1em;
+    margin-left: 10px;
+    border-radius: 4px;
+    border: 1px solid #ddd;
+    width: 200px;
+    cursor: pointer;
+  }
+  
+  select:focus {
+    outline: none;
+    border-color: #007bff;
+  }
+  
+  /* Summary Section */
+  .summary-section {
+    background-color: #f9f9f9;
+    padding: 20px;
+    border-radius: 8px;
+    margin-bottom: 20px;
+  }
+  
+  .summary-section h2 {
+    font-size: 1.8em;
+    margin-bottom: 15px;
+  }
+  
+  .summary-section div {
+    font-size: 1.2em;
+    margin: 10px 0;
+  }
+  
+  /* Financial Table Styling */
+  table.data-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-bottom: 30px;
+    font-size: 1.1em;
+  }
+  
+  table.data-table th, table.data-table td {
+    padding: 10px;
+    border: 1px solid #ddd;
+    text-align: left;
+  }
+  
+  table.data-table th {
+    background-color: #f2f2f2;
+    font-weight: bold;
+    color: #333;
+  }
+  
+  table.data-table tr:nth-child(even) {
+    background-color: #f9f9f9;
+  }
+  
+  table.data-table tr:hover {
+    background-color: #f1f1f1;
+  }
+  
+  /* Button and PDF Download Link */
+  button, .download-pdf {
+    padding: 10px 20px;
+    font-size: 1.2em;
+    background-color: #007bff;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    text-align: center;
+    margin-top: 20px;
+    display: inline-block;
+  }
+  
+  button:hover, .download-pdf:hover {
+    background-color: #0056b3;
+  }
+  
+  button:focus, .download-pdf:focus {
+    outline: none;
+  }
+  
+  /* Loading State for PDF */
+  .pdf-download-link {
+    font-size: 1.2em;
+    color: #007bff;
+    text-decoration: none;
+    margin-top: 20px;
+    display: inline-block;
+  }
+  
+  .pdf-download-link:hover {
+    text-decoration: underline;
+  }
+  
+  .pdf-download-link:focus {
+    outline: none;
+  }
+  
+  /* Mobile Responsiveness */
+  @media (max-width: 768px) {
+    .incomes-expenses-container {
+      padding: 15px;
+    }
+  
+    .summary-section {
+      padding: 15px;
+    }
+  
+    table.data-table th, table.data-table td {
+      font-size: 1em;
+    }
+  
+    select {
+      width: 150px;
+    }
+  }
+  

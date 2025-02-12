@@ -1,0 +1,98 @@
+/* IncomesAndExpenses.css */
+
+/* Component Container */
+.incomes-expenses-container {
+    font-family: 'Arial', sans-serif;
+    padding: 20px;
+    background-color: #f9f9f9;
+    max-width: 1200px;
+    margin: 0 auto;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  }
+  
+  /* Header */
+  .incomes-expenses-header {
+    background-color: #4caf50;
+    padding: 16px;
+    color: white;
+    text-align: center;
+    border-radius: 6px;
+  }
+  
+  .incomes-expenses-header h1 {
+    margin: 0;
+    font-size: 2em;
+  }
+  
+  .incomes-expenses-nav ul {
+    list-style: none;
+    padding: 0;
+    display: flex;
+    justify-content: center;
+    gap: 16px;
+    margin: 8px 0 0;
+  }
+  
+  .incomes-expenses-nav ul li a {
+    color: white;
+    text-decoration: none;
+    font-size: 1.1em;
+    transition: color 0.3s ease;
+  }
+  
+  .incomes-expenses-nav ul li a:hover {
+    color: #ffeb3b;
+  }
+  
+  /* Section Titles */
+  .section-title {
+    font-size: 1.8em;
+    margin-top: 30px;
+    color: #333;
+    border-left: 5px solid #4caf50;
+    padding-left: 10px;
+  }
+  
+  /* Tables */
+  .data-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 15px;
+    background-color: white;
+    border-radius: 8px;
+    overflow: hidden;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  }
+  
+  .data-table th,
+  .data-table td {
+    padding: 12px;
+    text-align: left;
+    border-bottom: 1px solid #e0e0e0;
+  }
+  
+  .data-table thead {
+    background-color: #4caf50;
+    color: white;
+  }
+  
+  .data-table tbody tr:hover {
+    background-color: #f1f1f1;
+  }
+  
+  .data-table th {
+    font-weight: bold;
+    text-transform: uppercase;
+    font-size: 0.9em;
+  }
+  
+  /* Specific Column Styles */
+  .data-table .amount-column {
+    text-align: right;
+  }
+  
+  .data-table .date-column {
+    text-align: center;
+  }
+  
