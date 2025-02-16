@@ -5,7 +5,7 @@ import './Home.css'; // Create a separate CSS file for styles
 const Home = () => {
   const [statistics, setStatistics] = useState({
     totalStudents: 0,
-    totalTeachers: 0,
+    totalBusEmployees: 0, // Updated variable to store helpers/drivers count
     totalBuses: 0,
   });
 
@@ -14,7 +14,11 @@ const Home = () => {
       try {
         const response = await fetch('http://localhost:4000/api/user/statistics');
         const data = await response.json();
-        setStatistics(data);
+        setStatistics({
+          totalStudents: data.totalStudents,
+          totalBusEmployees: data.totalBusEmployees, // Ensure API returns this key
+          totalBuses: data.totalBuses,
+        });
       } catch (error) {
         console.error('Error fetching statistics:', error);
       }
@@ -59,9 +63,13 @@ const Home = () => {
       </section>
 
       <section className="statistics-section">
-        <h1>SCHOOL STATISTICS</h1>
+        <h1>SCHOOL BUS STATISTICS</h1>
         <div className="statistics-cards">
-          {[{ label: 'Total Students', count: statistics.totalStudents }, { label: 'Total Teachers', count: statistics.totalTeachers }, { label: 'Total Buses', count: statistics.totalBuses }].map((stat, index) => (
+          {[
+            { label: 'Total Students', count: statistics.totalStudents },
+            { label: 'Bus Employees', count: statistics.totalBusEmployees }, // Updated label
+            { label: 'Total Buses', count: statistics.totalBuses }
+          ].map((stat, index) => (
             <div key={index} className="statistics-card">
               <h2>{stat.label}</h2>
               <p>{stat.count}</p>

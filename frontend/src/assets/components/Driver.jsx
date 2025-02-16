@@ -86,7 +86,7 @@ const Driver = () => {
           textAlign: "center",
         }}
       >
-        <h1>Driver Dashboard</h1>
+        <h1>Driver/Helper Dashboard</h1>
         <nav>
           <ul
             style={{

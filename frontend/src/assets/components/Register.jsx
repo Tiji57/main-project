@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { useNavigate } from 'react-router-dom'; // ✅ Correct import
 
 const Register = () => {
   const [name, setName] = useState('');
@@ -10,6 +11,8 @@ const Register = () => {
   const [busNo, setBusNo] = useState('');
   const [phone, setPhone] = useState('');
   const [message, setMessage] = useState('');
+
+  const navigate = useNavigate(); // ✅ Correct initialization
 
   const handleRegister = async (e) => {
     e.preventDefault();
@@ -28,6 +31,7 @@ const Register = () => {
 
       if (data.success) {
         alert('User registered successfully!');
+        navigate('/dashboard'); // ✅ Redirects to Dashboard
       } else {
         setMessage(data.message);
       }
@@ -38,12 +42,10 @@ const Register = () => {
 
   return (
     <div style={pageContainer}>
-      {/* Compact Header with Dark Blue Gradient */}
       <header style={headerStyle}>
         <h1 style={headerTitleStyle}>School Bus Management System</h1>
       </header>
 
-      {/* Form Container */}
       <div style={formWrapperStyle}>
         <div style={formContainerStyle}>
           <h2 style={formTitleStyle}>User Registration</h2>
@@ -85,7 +87,6 @@ const Register = () => {
               value={role}
               onChange={(e) => {
                 setRole(e.target.value);
-                // Reset teacher-specific fields when role changes
                 setClassName('');
                 setDivision('');
                 setBusNo('');
@@ -136,30 +137,28 @@ const Register = () => {
   );
 };
 
-// --- Page Container --- //
+// --- Styling Objects (unchanged) --- //
 const pageContainer = {
   width: '100%',
   minHeight: '100vh',
-  backgroundColor: '#f0f8ff', // AliceBlue for a clean blue-white feel
+  backgroundColor: '#f0f8ff',
   fontFamily: 'Times new Roman, sans-serif',
 };
 
-// --- Header Styles --- //
 const headerStyle = {
-  background: 'linear-gradient(45deg,rgb(60, 128, 231),rgb(22, 42, 61))', // Dark blue gradient
+  background: 'linear-gradient(45deg,rgb(60, 128, 231),rgb(22, 42, 61))',
   color: '#fff',
-  padding: '20px 10px', // Reduced vertical padding
+  padding: '20px 10px',
   textAlign: 'center',
 };
 
 const headerTitleStyle = {
-  fontSize: '28px', // Smaller font size for a compact header
+  fontSize: '28px',
   margin: 0,
   fontWeight: 'bold',
   textShadow: '1px 1px 3px rgba(0, 0, 0, 0.3)',
 };
 
-// --- Form Wrapper and Container --- //
 const formWrapperStyle = {
   display: 'flex',
   justifyContent: 'center',
@@ -170,12 +169,11 @@ const formContainerStyle = {
   backgroundColor: '#fff',
   padding: '40px 30px',
   borderRadius: '8px',
-  boxShadow: '0 4px 12px rgba(201, 225, 230, 0.6)', // Blue-tinted shadow for a glossy look
+  boxShadow: '0 4px 12px rgba(201, 225, 230, 0.6)',
   width: '100%',
   maxWidth: '500px',
 };
 
-// --- Form Title and Error Message --- //
 const formTitleStyle = {
   textAlign: 'center',
   marginBottom: '20px',
@@ -190,7 +188,6 @@ const errorMessageStyle = {
   color: '#e74c3c',
 };
 
-// --- Input and Button Styles --- //
 const inputStyle = {
   width: '100%',
   padding: '12px',
@@ -205,7 +202,7 @@ const inputStyle = {
 const buttonStyle = {
   width: '100%',
   padding: '12px',
-  background: 'linear-gradient(to right, #21CBF3, #2196F3)', // Glossy blue gradient
+  background: 'linear-gradient(to right, #21CBF3, #2196F3)',
   color: '#fff',
   border: 'none',
   borderRadius: '5px',

@@ -12,11 +12,17 @@ const DisplayStudents = () => {
   const fetchStudents = async (userId) => {
     try {
       const response = await axios.get(`http://localhost:4000/api/students?teacherId=${userId}`);
-      setStudents(response.data.data);
-      setLoading(false);
+      
+      if (response.data.data.length === 0) {
+        setStudents([]); // No students found
+      } else {
+        setStudents(response.data.data);
+      }
+      
     } catch (error) {
       console.error('Error fetching students:', error);
-      setError('Error fetching students. Please try again later.');
+      setError('No Students Found');
+    } finally {
       setLoading(false);
     }
   };
@@ -35,10 +41,6 @@ const DisplayStudents = () => {
     return <div>Loading students...</div>;
   }
 
-  if (error) {
-    return <div>{error}</div>;
-  }
-
   return (
     <div className="container">
       {/* Page Header */}
@@ -51,15 +53,16 @@ const DisplayStudents = () => {
             <li><Link to="/Teacher">Add Students</Link></li>
             <li><Link to="/Record">Fee Status</Link></li>
             <li><Link to="/">Logout</Link></li>
-          
           </ul>
         </nav>
       </header>
 
       {/* Display student data */}
       <section className="student-section">
-        {students.length === 0 ? (
-          <p>No students found.</p>
+        {error ? (
+          <p>{error}</p>
+        ) : students.length === 0 ? (
+          <p>No students found for this teacher.</p>
         ) : (
           <table className="student-table">
             <thead>

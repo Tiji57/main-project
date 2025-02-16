@@ -199,25 +199,24 @@ const updateUser = async (req, res) => {
 export const getStatistics = async (req, res) => {
   try {
     console.log('Fetching statistics...');
-    
+
     // Count total students
     const totalStudents = await Student.countDocuments();
     console.log('Total Students:', totalStudents);
 
-    // Count total teachers
-    const totalTeachers = await User.countDocuments({ role: 'teacher' });
-    console.log('Total Teachers:', totalTeachers);
+    // Count total bus employees (helpers + drivers)
+    const totalBusEmployees = await User.countDocuments({ role: { $in: ['driver/helper'] } }); 
+    console.log('Total Bus Employees:', totalBusEmployees);
 
     // Count total buses
-    const buses = await Student.distinct('busNo');
-    console.log('Buses:', buses);
+    const buses = await Student.distinct('busNo'); // Getting unique bus numbers from students
     const totalBuses = buses.length;
     console.log('Total Buses:', totalBuses);
 
     // Send the response
     res.json({
       totalStudents,
-      totalTeachers,
+      totalBusEmployees, // Fixed response key
       totalBuses,
     });
   } catch (error) {
@@ -225,6 +224,7 @@ export const getStatistics = async (req, res) => {
     res.status(500).json({ error: 'Internal Server Error' });
   }
 };
+
 
 
 
