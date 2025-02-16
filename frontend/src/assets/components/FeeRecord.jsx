@@ -2,15 +2,13 @@ import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 
 const FeeRecord = () => {
-  const [students, setStudents] = useState([]); // List of all students
-  const [feeDetails, setFeeDetails] = useState([]); // Fee details for students
+  const [students, setStudents] = useState([]);
+  const [feeDetails, setFeeDetails] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
 
-  // Assuming teacher ID is stored in localStorage
-  const teacherId = localStorage.getItem('userId'); // Replace with logic to get teacherId
+  const teacherId = localStorage.getItem('userId');
 
-  // Array of months from June to March
   const months = [
     'June', 'July', 'August', 'September', 'October', 'November',
     'December', 'January', 'February', 'March'
@@ -25,12 +23,10 @@ const FeeRecord = () => {
       }
 
       try {
-        // Fetch all students
         const studentsResponse = await axios.get(
           `http://localhost:4000/api/students?teacherId=${teacherId}`
         );
 
-        // Fetch fee details
         const feeDetailsResponse = await axios.get(
           `http://localhost:4000/api/feestatus?teacherId=${teacherId}`
         );
@@ -55,7 +51,6 @@ const FeeRecord = () => {
     return <div style={{ color: 'red', fontWeight: 'bold' }}>{error}</div>;
   }
 
-  // Group fee details by student and month
   const groupedFeeDetails = feeDetails.reduce((acc, fee) => {
     if (!acc[fee.studentName]) {
       acc[fee.studentName] = {};
@@ -66,11 +61,35 @@ const FeeRecord = () => {
 
   return (
     <div style={{ padding: '20px', fontFamily: 'Arial, sans-serif' }}>
-      <h2 style={{ textAlign: 'center', color: '#333' }}>Fee Status Overview</h2>
+      {/* Main Page Header */}
+      <h2
+        style={{
+          textAlign: 'center',
+          background: 'linear-gradient(45deg, #004085, #007BFF, #66CCFF)',
+          padding: '15px',
+          borderRadius: '5px',
+          color: 'white',
+          width: '100%',
+          margin: '0 auto',
+          marginBottom: '20px'
+        }}
+      >
+        Fee Status Overview
+      </h2>
 
-      {/* Render tables for each student */}
+      {/* Divider Line */}
+      <hr
+        style={{
+          border: 'none',
+          height: '2px',
+          background: 'linear-gradient(to right, #f3ec78, #af4261)',
+          marginBottom: '20px'
+        }}
+      />
+
+      {/* Table */}
       <table style={{ width: '100%', borderCollapse: 'collapse' }}>
-        <thead style={{ backgroundColor: '#f4f4f4' }}>
+        <thead style={{ backgroundColor: '#f2f2f2', color: '#333' }}>
           <tr>
             <th style={{ border: '1px solid #ddd', padding: '8px' }}>Student Name</th>
             {months.map((month) => (
@@ -88,14 +107,10 @@ const FeeRecord = () => {
                   {student.name}
                 </td>
                 {months.map((month) => {
-                  const fee = groupedFeeDetails[student.name]?.[month]; // Access fee by month name
+                  const fee = groupedFeeDetails[student.name]?.[month];
                   return (
                     <td key={month} style={{ border: '1px solid #ddd', padding: '8px' }}>
-                      {fee ? (
-                        fee.feeStatus ? fee.feeStatus : 'Paid'
-                      ) : (
-                        'No record' // Default message for missing fee details
-                      )}
+                      {fee ? (fee.feeStatus ? fee.feeStatus : 'Paid') : 'Unpaid'}
                     </td>
                   );
                 })}
@@ -108,7 +123,7 @@ const FeeRecord = () => {
                 style={{
                   border: '1px solid #ddd',
                   padding: '8px',
-                  textAlign: 'center',
+                  textAlign: 'center'
                 }}
               >
                 No students found for this teacher.
